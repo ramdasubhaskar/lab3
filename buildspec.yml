@@ -9,15 +9,15 @@ phases:
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t myforecs:1 .
-      - docker tag myforecs:1 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:latest
+      - docker build -t myforecs:2 .
+      - docker tag myforecs:2 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:2
 
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker push 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:latest
+      - docker push 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:2
       - echo Writing image definitions file...
-      - printf '[{"name":"bhaskarcontainer","imageUri":"%s"}]' 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:latest > imagedefinitions.json
+      - printf '[{"name":"bhaskarcontainer","imageUri":"%s"}]' 864899837235.dkr.ecr.ap-south-1.amazonaws.com/user18/myrepo:2 > imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
